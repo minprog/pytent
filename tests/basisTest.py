@@ -1,5 +1,5 @@
 from checkpy import *
-from _basics import *
+from _forbidden_basics import *
 from _static_analysis import *
 
 @t.passed(no_syntax_error, hide=False)
@@ -12,7 +12,7 @@ def dubbele_hoofdletters():
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def filter_gemiddelde():
-    """dubbele_hoofdletters werkt correct"""
+    """filter_gemiddelde werkt correct"""
     assert defines_function("filter_gemiddelde")
     assert getFunction("filter_gemiddelde")(10.5, [[1, 6, 9], [12], [10, 10], [10, 11, 11]]) == [[12], [10, 11, 11]]
 
