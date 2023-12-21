@@ -18,6 +18,7 @@ def no_syntax_error(test):
         return True
     test.test = testMethod
 
+@t.passed(no_syntax_error, hide=False)
 @t.test(2)
 def no_forbidden(test):
     """het bestand bevat geen sorted, map, eval, zip of comprehensions"""
