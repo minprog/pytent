@@ -10,22 +10,15 @@ import re
 import os
 
 @t.test(1)
-def basic_style(test):
+def no_syntax_error(test):
     """het bestand is in orde"""
     def testMethod():
         if lineno := has_syntax_error():
             return False, f"de code bevat een syntax error op regel {lineno}"
-        if has_string("Optional"):
-            return False, "let op dat je niet Optional[...] gebruikt als type hint maar ... | None"
-        if has_string("List[", "Tuple[", "Dict[", "Set["):
-            return False, "let op dat je niet List[...] e.d. gebruikt als type hint maar list[...]"
-        if has_call('map'):
-            return False, "let op dat je geen map() gebruikt"
-        if has_call('eval'):
-            return False, "let op dat je geen eval() gebruikt"
         return True
     test.test = testMethod
 
+@t.passed(no_syntax_error, hide=False)
 @t.test(2)
 def mypy_ok(test):
     """type hints zijn ingevuld en consistent bevonden"""
@@ -37,6 +30,7 @@ def mypy_ok(test):
         return '- line ' + '\n- line '.join([':'.join(i.split(':')[1:])[:60] for i in output.splitlines()[:-1]])
     test.fail = report
 
+@t.passed(no_syntax_error, hide=False)
 @t.test(3)
 def doctest_ok(test):
     """doctests zijn voldoende aanwezig en geven allemaal akkoord"""

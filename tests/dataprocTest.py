@@ -1,6 +1,7 @@
 from checkpy import *
 from _basics import *
 
+@t.passed(no_syntax_error, hide=False)
 @t.test()
 def data_proc():
     """data_cleanup werkt correct"""

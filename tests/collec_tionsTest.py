@@ -2,18 +2,21 @@ from checkpy import *
 from _basics import *
 from _static_analysis import *
 
+@t.passed(no_syntax_error, hide=False)
 @t.test()
 def emmeren():
     """emmeren werkt correct"""
     assert defines_function("emmeren")
     assert getFunction("emmeren")([[1,2,3], [3,4], [4,5]]) == {3: [[1, 2, 3]], 2: [[3, 4], [4, 5]]}
 
+@t.passed(no_syntax_error, hide=False)
 @t.test()
 def maak_overzicht():
     """maak_overzicht werkt correct"""
     assert defines_function("maak_overzicht")
     assert getFunction("maak_overzicht")([(2, 3, 0), (3, 0, 0)]) == {"cola": 5, "sinas": 3, "limonade": 0}
 
+@t.passed(no_syntax_error, hide=False)
 @t.test()
 def rits():
     """rits werkt correct"""
