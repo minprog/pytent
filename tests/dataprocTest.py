@@ -1,5 +1,5 @@
 from checkpy import *
-from _basics import *
+from _catch_syntax_error import *
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
