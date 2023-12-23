@@ -1,4 +1,6 @@
 from checkpy import *
+
+from _remove_main import *
 from _basics import *
 from _static_analysis import *
 
