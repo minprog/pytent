@@ -24,6 +24,7 @@ def split_lengte():
     """split_lengte werkt correct"""
     assert defines_function("split_lengte")
     assert getFunction("split_lengte")(5, ['these', 'stories', 'we', 'wear', 'scars', 'stretchmarks', 'wrinkles']) == (['these', 'stories', 'scars', 'stretchmarks', 'wrinkles'], ['we', 'wear'])
+    assert getFunction("split_lengte")(3, ['these', 'stories', 'we', 'wear', 'scars', 'stretchmarks', 'wrinkles']) == (['these', 'stories', 'wear', 'scars', 'stretchmarks', 'wrinkles'], ['we'])
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
@@ -31,11 +32,13 @@ def converteer_naar_lijst():
     """converteer_naar_lijst werkt correct"""
     assert defines_function("converteer_naar_lijst")
     assert getFunction("converteer_naar_lijst")("1,2,3") == [1, 2, 3]
+    assert getFunction("converteer_naar_lijst")("1,2,30") == [1, 2, 30]
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def voortschrijdende_som():
     """voortschrijdende_som werkt correct"""
     assert defines_function("voortschrijdende_som")
+    assert getFunction("voortschrijdende_som")("4,5,7") == [16]
     assert getFunction("voortschrijdende_som")("1,2,3") == [6]
     assert getFunction("voortschrijdende_som")("1,2,3,4,5,6,7") == [6, 9, 12, 15, 18]
