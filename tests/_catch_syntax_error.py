@@ -16,6 +16,7 @@ def no_syntax_error(test):
         def generate_map(self):
             self.program_map = []
             state = 0
+            function_start_line = 0
             for line_no, line in enumerate(self.lines):
                 # print(line_no, state)
                 if state == 0:
@@ -51,7 +52,8 @@ def no_syntax_error(test):
                     if line.endswith('"""'):
                         state = 2
             function_end_line = line_no
-            self.program_map.append((function_start_line, function_end_line))
+            if function_start_line != 0:
+                self.program_map.append((function_start_line, function_end_line))
         def write_program(self):
             with open(test.fileName, 'w') as f:
                 for no in range(1, self.size):
@@ -63,6 +65,8 @@ def no_syntax_error(test):
         def remove_syntax_errors(self):
             self.syntax_errors = []
             while lineno := has_syntax_error():
+                if lineno in self.syntax_errors:
+                    return
                 if len(self.syntax_errors) == 4:
                     return
                 self.syntax_errors.append(lineno)
@@ -75,7 +79,7 @@ def no_syntax_error(test):
         p.remove_syntax_errors()
 
         if lineno := has_syntax_error():
-            return False, f"de code bevat meer dan 4 syntax errors"
+            return False, f"er is minstens één syntax error die niet verwijderd kon worden"
         if len(p.syntax_errors) > 0:
             test.description = f"functies verwijderd met syntax errors op regel {','.join([str(e) for e in p.syntax_errors])}"
         return True
