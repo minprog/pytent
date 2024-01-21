@@ -3,7 +3,7 @@ import checkpy.tests as t
 
 @t.test()
 def remove_main(test):
-    """removing any main or testing code"""
+    """verwijderen van main of andere testcode"""
     def testMethod():
         # read original file
         with open(test.fileName, 'r') as f:
