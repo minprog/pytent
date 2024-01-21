@@ -12,7 +12,8 @@ def no_syntax_error(test):
             with open(test.fileName, 'r') as f:
                 self.lines = f.readlines()
                 self.size = len(self.lines)
-            self.generate_map()
+            if self.size > 0:
+                self.generate_map()
         def generate_map(self):
             self.program_map = []
             state = 0
