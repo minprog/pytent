@@ -9,14 +9,7 @@ import subprocess
 import re
 import os
 
-@t.test(1)
-def no_syntax_error(test):
-    """het bestand is in orde"""
-    def testMethod():
-        if lineno := has_syntax_error():
-            return False, f"de code bevat een syntax error op regel {lineno}"
-        return True
-    test.test = testMethod
+from _catch_syntax_error import *
 
 @t.passed(no_syntax_error, hide=False)
 @t.test(2)
