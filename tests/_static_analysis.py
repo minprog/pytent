@@ -4,6 +4,71 @@ import ast
 
 from checkpy import static
 
+def extract_function_by_name(function_name):
+    # Parse the source code into an AST
+    source_code = static.getSource()
+    tree = ast.parse(source_code)
+
+    # Find the function definition with the given name
+    target_function = None
+    for node in ast.walk(tree):
+        if isinstance(node, ast.FunctionDef) and node.name == function_name:
+            target_function = node
+            break
+
+    if target_function is None:
+        return f"Function '{function_name}' not found."
+
+    # Extract the source code lines based on line numbers
+    start_lineno = target_function.lineno - 1
+    end_lineno = target_function.end_lineno
+    function_source = "\n".join(source_code.splitlines()[start_lineno:end_lineno])
+
+    return function_source
+
+def no_string_methods_or_slicing(src) -> bool:
+    """
+    Vind aanroepen naar ingebouwde string methodes en slicing.
+    Returned een error bericht met de gebruikt methode of slicing en op welke regel.
+    Returned None als er er niks aan de hand is :)
+    """
+    # src = static.getSource()
+    method_names = [n for n in dir("") if not n.startswith("__")]
+
+    lines = src.split("\n")
+    for method_name in method_names:
+        for line_nr, line in enumerate(lines):
+            if "." + method_name in line:
+                raise AssertionError(f"Gebruik van string-methodes is niet toegestaan. Zoals {method_name} op regel {line_nr + 1}:\n{line}")
+
+    import ast
+    class Visitor(ast.NodeVisitor):
+        def visit_Slice(self, node: ast.Slice):
+            raise AssertionError(f"Gebruik van slicing is niet toegestaan. Zoals op regel {node.lineno}:\n{lines[node.lineno - 1]}")
+
+    tree = ast.parse(src)
+    visitor = Visitor()
+    visitor.visit(tree)
+    return True
+
+def has_no_call_to(src, *banned_calls) -> bool:
+    found = False
+
+    class Visitor(ast.NodeVisitor):
+        def visit_Name(self, node: ast.Name) -> Any:
+            if node.id in banned_calls:
+                nonlocal found
+                found = True
+
+    calls: list[ast.Call] = static.getAstNodes(ast.Call, source=src)
+    for call in calls:
+        Visitor().visit(call)
+
+    if found:
+        raise AssertionError(f"Gebruik van de functie {banned_calls[0]}() is niet toegestaan")
+
+    return not found
+
 def defines_function(name: str) -> bool:
     check = name in static.getFunctionDefinitions()
     if not check:
