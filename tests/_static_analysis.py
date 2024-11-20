@@ -71,6 +71,10 @@ def has_no_call_to(src, *banned_calls) -> bool:
 
 def defines_function(name: str) -> bool:
     check = name in static.getFunctionDefinitions()
+    return check
+
+def assert_defines_function(name: str) -> bool:
+    check = name in static.getFunctionDefinitions()
     if not check:
         raise AssertionError(f"`{name}` is niet aanwezig")
     return check
