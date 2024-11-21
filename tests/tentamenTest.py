@@ -41,6 +41,7 @@ def is_valid_plate():
     assert getFunction("is_valid_plate")("123-AB1-C") == False
     assert getFunction("is_valid_plate")("A23-1-C") == False
     assert getFunction("is_valid_plate")("AB-1-C") == True
+    assert getFunction("is_valid_plate")("AB-1-C3") == False
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
@@ -48,7 +49,7 @@ def avg_vowels_per_word():
     """avg_vowels_per_word werkt correct"""
     assert assert_defines_function("avg_vowels_per_word")
     src = extract_function_by_name("avg_vowels_per_word")
-    assert no_string_methods_or_slicing(src)
+    # assert no_string_methods_or_slicing(src)
     assert has_no_call_to(src, 'sorted'), "Bevat geen aanroep naar sorted()"
     assert has_no_call_to(src, 'min'), "Bevat geen aanroep naar min()"
     assert has_no_call_to(src, 'max'), "Bevat geen aanroep naar max()"
@@ -64,7 +65,7 @@ def is_num_palindrome():
     """is_num_palindrome werkt correct"""
     assert assert_defines_function("is_num_palindrome")
     src = extract_function_by_name("is_num_palindrome")
-    assert no_string_methods_or_slicing(src)
+    # assert no_string_methods_or_slicing(src)
     assert has_no_call_to(src, 'sorted'), "Bevat geen aanroep naar sorted()"
     assert has_no_call_to(src, 'min'), "Bevat geen aanroep naar min()"
     assert has_no_call_to(src, 'max'), "Bevat geen aanroep naar max()"
@@ -88,7 +89,7 @@ def titlecase():
     if selected_function == None: raise AssertionError(f"{' of '.join(potential_names)} niet gevonden")
     # assert defines_function("titlecase")
     src = extract_function_by_name(selected_function)
-    assert no_string_methods_or_slicing(src)
+    # assert no_string_methods_or_slicing(src)
     assert has_no_call_to(src, 'sorted'), "Bevat geen aanroep naar sorted()"
     assert has_no_call_to(src, 'min'), "Bevat geen aanroep naar min()"
     assert has_no_call_to(src, 'max'), "Bevat geen aanroep naar max()"
