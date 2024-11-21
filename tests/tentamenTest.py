@@ -80,10 +80,12 @@ def is_num_palindrome():
 def titlecase():
     """titlecase werkt correct"""
     potential_names = ['titlecase', 'titelcase', 'title_case']
+    selected_function = None
     for name in potential_names:
         if defines_function(name):
             selected_function = name
             break
+    if selected_function == None: raise AssertionError(f"{' of '.join(potential_names)} niet gevonden")
     # assert defines_function("titlecase")
     src = extract_function_by_name(selected_function)
     assert no_string_methods_or_slicing(src)
