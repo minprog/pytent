@@ -95,5 +95,6 @@ def titlecase():
     assert has_no_call_to(src, 'max'), "Bevat geen aanroep naar max()"
     assert has_no_call_to(src, 'reversed'), "Bevat geen aanroep naar reversed()"
     assert getFunction(selected_function)("dit is een test") == 'Dit Is Een Test'
+    assert getFunction(selected_function)("dit is een testd") == 'Dit Is Een Testd'
     assert getFunction(selected_function)("hallo wereld") == 'Hallo Wereld'
     assert getFunction(selected_function)("python PROGRAMMEER les") == 'Python Programmeer Les'
