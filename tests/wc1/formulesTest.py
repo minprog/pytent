@@ -57,7 +57,7 @@ def fahrenheit_to_celsius():
     assert defines_function("fahrenheit_to_celsius")
     assert getFunction("fahrenheit_to_celsius")(50) == 10
     assert getFunction("fahrenheit_to_celsius")(32) == 0
-    assert getFunction("fahrenheit_to_celsius")(33.8) == 1
+    assert getFunction("fahrenheit_to_celsius")(212) == 100
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
