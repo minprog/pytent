@@ -13,6 +13,18 @@ from _static_analysis import *
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
+def check_forbidden():
+    """check of geen geavanceerde python gebruikt"""
+    assert in_code(ast.For)
+    assert not_in_code(ast.Set)
+    assert not_in_code(ast.List)
+    # assert not_in_code(ast.Tuple)
+    assert not_in_code(ast.Dict)
+    assert not_has_stringmult()
+    assert not_has_stringmethods()
+
+@t.passed(no_syntax_error, hide=False)
+@t.test()
 def print_check():
     """geen van de functies print iets (moet returnen!)"""
     assert has_no_call_to(static.getSource(), "print")

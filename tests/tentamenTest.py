@@ -6,7 +6,7 @@ from _static_analysis import *
 @t.test()
 def has_digits_but_no_spaces():
     """has_digits_but_no_spaces werkt correct"""
-    assert assert_defines_function("has_digits_but_no_spaces")
+    assert defines_function("has_digits_but_no_spaces")
     src = extract_function_by_name("has_digits_but_no_spaces")
     assert no_string_methods_or_slicing(src)
     assert has_no_call_to(src, 'sorted'), "Bevat geen aanroep naar sorted()"
@@ -29,7 +29,7 @@ def has_digits_but_no_spaces():
 @t.test()
 def is_valid_plate():
     """is_valid_plate werkt correct"""
-    assert assert_defines_function("is_valid_plate")
+    assert defines_function("is_valid_plate")
     src = extract_function_by_name("is_valid_plate")
     assert no_string_methods_or_slicing(src)
     assert has_no_call_to(src, 'sorted'), "Bevat geen aanroep naar sorted()"
@@ -47,7 +47,7 @@ def is_valid_plate():
 @t.test()
 def avg_vowels_per_word():
     """avg_vowels_per_word werkt correct"""
-    assert assert_defines_function("avg_vowels_per_word")
+    assert defines_function("avg_vowels_per_word")
     src = extract_function_by_name("avg_vowels_per_word")
     # assert no_string_methods_or_slicing(src)
     assert has_no_call_to(src, 'sorted'), "Bevat geen aanroep naar sorted()"
@@ -63,7 +63,7 @@ def avg_vowels_per_word():
 @t.test()
 def is_num_palindrome():
     """is_num_palindrome werkt correct"""
-    assert assert_defines_function("is_num_palindrome")
+    assert defines_function("is_num_palindrome")
     src = extract_function_by_name("is_num_palindrome")
     # assert no_string_methods_or_slicing(src)
     assert has_no_call_to(src, 'sorted'), "Bevat geen aanroep naar sorted()"

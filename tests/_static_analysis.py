@@ -72,12 +72,6 @@ def has_no_call_to(src, *banned_calls) -> bool:
 def defines_function(name: str) -> bool:
     check = name in static.getFunctionDefinitions()
     if not check:
-        raise AssertionError(f"functie niet gevonden")
-    return check
-
-def assert_defines_function(name: str) -> bool:
-    check = name in static.getFunctionDefinitions()
-    if not check:
         raise AssertionError(f"`{name}` is niet aanwezig")
     return check
 
@@ -85,7 +79,10 @@ def not_in_code(construct: type):
     check = construct not in static.AbstractSyntaxTree()
     name = str(construct).split(".")[1].split("'")[0].lower()
     if not check:
-        raise AssertionError(f"`{name}` mag niet gebruikt worden in deze opdracht")
+        if name in ['list', 'set', 'tuple', 'dict']:
+            raise AssertionError(f"{name}s mogen niet gebruikt worden in deze opdracht")
+        else:
+            raise AssertionError(f"`{name}` mag niet gebruikt worden in deze opdracht")
     return check
 
 def in_code(construct: type):
@@ -139,3 +136,28 @@ def has_import(*banned_imports) -> bool:
 
 def has_generators() -> bool:
     return static.getAstNodes(ast.ListComp, ast.DictComp, ast.SetComp, ast.GeneratorExp)
+
+#----
+
+def not_defines_function(name: str) -> bool:
+    check = name not in static.getFunctionDefinitions()
+    if not check:
+        raise AssertionError(f"`{name}` is onverwacht aanwezig")
+    return check
+
+def not_has_stringmethods() -> bool:
+    tree = ast.parse(static.getSource())
+    for n in ast.walk(tree):
+        if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute):
+            if n.func.attr in ['replace', 'find']:
+                raise AssertionError(f"string-methods zoals {n.func.attr}() mogen niet gebruikt worden")
+    return True
+
+def not_has_stringmult() -> bool:
+    tree = ast.parse(static.getSource())
+    for n in ast.walk(tree):
+        if isinstance(n, ast.BinOp) and isinstance(n.op, ast.Mult):
+            if (isinstance(n.left, ast.Constant) and isinstance(n.left.value, str)
+                or isinstance(n.right, ast.Constant) and isinstance(n.right.value, str)):
+                raise AssertionError(f"`*` mag alleen gebruikt worden om getallen te vermenigvuldigen met elkaar")
+    return True
