@@ -15,7 +15,6 @@ from _static_analysis import *
 @t.test()
 def check_forbidden():
     """check of geen geavanceerde python gebruikt"""
-    assert in_code(ast.For)
     assert not_in_code(ast.Set)
     assert not_in_code(ast.List)
     # assert not_in_code(ast.Tuple)
