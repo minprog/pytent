@@ -11,23 +11,32 @@ import os
 
 from _catch_syntax_error import *
 
-def assert_doctest(fname, args, expected, hint=None):
+def assert_doctest(fname, args, expected, hint=None, use_output=False):
+    # check function existence
     defines_function(fname)
     f = getFunction(fname)
-    
-    if type(args) == tuple:
-        check = f(*args) != expected
-    else:
-        check = f(args) != expected
 
-    if check:
+    # wrap args for consistent calling
+    if type(args) != tuple:
+        args = (args,)
+    
+    # call function
+    result = f(*args)
+    
+    if use_output:
+        check = f.printOutput.strip() == expected.strip()
+    else:
+        check = result == expected
+
+    if not check:
         msg = []
         msg.append("voeg deze doctest toe en gebruik 'm om je code te verbeteren:")
-        if type(args) != tuple:
-            args = (args,)
         args = ', '.join([a.__repr__() for a in args])
         msg.append(f">>> {fname}({args})")
-        msg.append(f"{expected.__repr__()}")
+        if use_output:
+            msg.append(expected)
+        else:
+            msg.append(f"{expected.__repr__()}")
         if hint:
             msg.append(f"({hint})")
         raise AssertionError('\n'.join(msg))
