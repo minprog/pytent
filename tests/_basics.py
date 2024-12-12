@@ -20,16 +20,20 @@ def assert_doctest(fname, args, expected, hint=None, use_output=False):
     if type(args) != tuple:
         args = (args,)
     
+    msg = []
+
     # call function
-    result = f(*args)
-    
-    if use_output:
-        check = f.printOutput.strip() == expected.strip()
-    else:
-        check = result == expected
+    try:
+        result = f(*args)
+        if use_output:
+            check = f.printOutput.strip() == expected.strip()
+        else:
+            check = result == expected
+    except:
+        check = False
+        msg.append("CRASH!")
 
     if not check:
-        msg = []
         msg.append("voeg deze doctest toe en gebruik 'm om je code te verbeteren:")
         args = ', '.join([a.__repr__() for a in args])
         msg.append(f">>> {fname}({args})")
