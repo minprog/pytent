@@ -71,10 +71,9 @@ def reverse_dict():
 @t.test()
 def minst_voorkomende():
     """minst_voorkomende werkt correct"""
-    assert defines_function("minst_voorkomende")
-    assert getFunction("minst_voorkomende")({"pepernoten": 100, "taaitaai": 20, "kruidnoten": 501}) == "taaitaai"
-    assert getFunction("minst_voorkomende")({"a": 1, "b": 1, "c": 2}) == "a"
-    assert getFunction("minst_voorkomende")({"x": 10}) == "x"
+    assert_doctest('minst_voorkomende', {"pepernoten": 100, "taaitaai": 20, "kruidnoten": 501}, "taaitaai")
+    assert_doctest('minst_voorkomende', {"a": 1, "b": 1, "c": 2}, "a")
+    assert_doctest('minst_voorkomende', {"x": 10}, "x")
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
@@ -98,7 +97,6 @@ def dict_intersect():
 @t.test()
 def get_valuable_letters():
     """get_valuable_letters werkt correct"""
-    assert defines_function("get_valuable_letters")
-    assert getFunction("get_valuable_letters")(4) == ["c", "f", "h", "j", "q", "u", "v", "w", "x", "y", "z"]
-    assert getFunction("get_valuable_letters")(8) == ["q", "x", "y"]
-    assert getFunction("get_valuable_letters")(11) == []
+    assert_doctest('get_valuable_letters', 4, ["c", "f", "h", "j", "q", "u", "v", "w", "x", "y", "z"])
+    assert_doctest('get_valuable_letters', 8, ["q", "x", "y"])
+    assert_doctest('get_valuable_letters', 11, [])
