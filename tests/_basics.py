@@ -11,6 +11,27 @@ import os
 
 from _catch_syntax_error import *
 
+def assert_doctest(fname, args, expected, hint=None):
+    defines_function(fname)
+    f = getFunction(fname)
+    
+    if type(args) == tuple:
+        check = f(*args) != expected
+    else:
+        check = f(args) != expected
+
+    if check:
+        msg = []
+        msg.append("voeg deze doctest toe en gebruik 'm om je code te verbeteren:")
+        if type(args) != tuple:
+            args = (args,)
+        args = ', '.join([a.__repr__() for a in args])
+        msg.append(f">>> {fname}({args})")
+        msg.append(f"{expected.__repr__()}")
+        if hint:
+            msg.append(f"({hint})")
+        raise AssertionError('\n'.join(msg))
+
 # @t.passed(no_syntax_error, hide=False)
 # @t.test(2)
 # def mypy_ok(test):

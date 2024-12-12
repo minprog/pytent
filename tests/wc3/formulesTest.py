@@ -108,26 +108,24 @@ def to_lower():
 @t.test()
 def lstrip():
     """lstrip werkt correct"""
-    assert defines_function("lstrip")
-    assert getFunction("lstrip")("   hello") == "hello"
-    assert getFunction("lstrip")("hello   ") == "hello   "
-    assert getFunction("lstrip")("") == ""
+    assert_doctest('lstrip', '   hello', 'hello')
+    assert_doctest('lstrip', 'hello   ', 'hello   ')
+    assert_doctest('lstrip', '   hello   ', 'hello   ')
+    assert_doctest('lstrip', '', '')
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def rstrip():
     """rstrip werkt correct"""
-    assert defines_function("rstrip")
-    assert getFunction("rstrip")("hello world   ") == "hello world"
-    # assert getFunction("rstrip")("   hello   ") == "   hello"
-    assert getFunction("rstrip")("hello   ") == "hello"
-    assert getFunction("rstrip")("") == ""
+    assert_doctest('rstrip', "hello   ", "hello")
+    assert_doctest('rstrip', "hello world   ", "hello world")
+    assert_doctest('rstrip', "   hello   ", "   hello")
+    assert_doctest('rstrip', '', '')
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def split_in_two():
     """split_in_two werkt correct"""
-    assert defines_function("split_in_two")
-    assert getFunction("split_in_two")("joey:22", ":") == ("joey", "22")
-    assert getFunction("split_in_two")("hello:world", ":") == ("hello", "world")
-    assert getFunction("split_in_two")("a:b", ":") == ("a", "b")
+    assert_doctest('split_in_two', ("joey:22", ":"), ("joey", "22"))
+    assert_doctest('split_in_two', ("hello:world", ":"), ("hello", "world"))
+    assert_doctest('split_in_two', ("a:b", ":"), ("a", "b"))
