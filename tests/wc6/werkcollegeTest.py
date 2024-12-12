@@ -17,55 +17,49 @@ from checkpy import *
 @t.test()
 def count():
     """count werkt correct"""
-    assert defines_function("count")
-    assert getFunction("count")([1, 2, 3, 2]) == {1: 1, 2: 2, 3: 1}
-    assert getFunction("count")([4, 4, 4]) == {4: 3}
-    assert getFunction("count")([]) == {}
+    assert_doctest('count', [1, 2, 3, 2], {1: 1, 2: 2, 3: 1})
+    assert_doctest('count', [4, 4, 4], {4: 3})
+    assert_doctest('count', [], {})
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def list_duplicates():
     """list_duplicates werkt correct"""
-    assert defines_function("list_duplicates")
-    assert getFunction("list_duplicates")([1, 2, 3, 2, 3, 3]) == {2, 3}
-    assert getFunction("list_duplicates")([1, 2, 3]) == set()
-    assert getFunction("list_duplicates")([]) == set()
+    assert_doctest('list_duplicates', [1, 2, 3, 2, 3, 3], {2, 3})
+    assert_doctest('list_duplicates', [1, 2, 3], set())
+    assert_doctest('list_duplicates', [], set())
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def get_values():
     """get_values werkt correct"""
-    assert defines_function("get_values")
-    assert getFunction("get_values")({"a": 1, "b": 2, "c": 3}) == [1, 2, 3]
-    assert getFunction("get_values")({}) == []
-    assert getFunction("get_values")({"x": 42}) == [42]
+    assert_doctest('get_values', {"a": 1, "b": 2, "c": 3}, [1, 2, 3])
+    assert_doctest('get_values', {}, [])
+    assert_doctest('get_values', {"x": 42}, [42])
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def is_normal():
     """is_normal werkt correct"""
-    assert defines_function("is_normal")
-    assert getFunction("is_normal")({"a": 0.5, "b": 0.5}) == True
-    assert getFunction("is_normal")({"a": 0.3, "b": 0.7, "c": 0.1}) == False
-    assert getFunction("is_normal")({}) == False
+    assert_doctest('is_normal', {"a": 0.5, "b": 0.5}, True)
+    assert_doctest('is_normal', {"a": 0.3, "b": 0.7, "c": 0.1}, False)
+    assert_doctest('is_normal', {}, False)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def count_values():
     """count_values werkt correct"""
-    assert defines_function("count_values")
-    assert getFunction("count_values")({"a": 1, "b": 2, "c": 1}) == 2
-    assert getFunction("count_values")({"a": 1, "b": 2, "c": 3}) == 3
-    assert getFunction("count_values")({}) == 0
+    assert_doctest('count_values', {"a": 1, "b": 2, "c": 1}, 2)
+    assert_doctest('count_values', {"a": 1, "b": 2, "c": 3}, 3)
+    assert_doctest('count_values', {}, 0)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def reverse_dict():
     """reverse_dict werkt correct"""
-    assert defines_function("reverse_dict")
-    assert getFunction("reverse_dict")({"a": 1, "b": 2}) == {1: "a", 2: "b"}
-    assert getFunction("reverse_dict")({}) == {}
-    assert getFunction("reverse_dict")({"x": 42}) == {42: "x"}
+    assert_doctest('reverse_dict', {"a": 1, "b": 2}, {1: "a", 2: "b"})
+    assert_doctest('reverse_dict', {}, {})
+    assert_doctest('reverse_dict', {"x": 42}, {42: "x"})
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
@@ -79,19 +73,17 @@ def minst_voorkomende():
 @t.test()
 def tel_dubbele():
     """tel_dubbele werkt correct"""
-    assert defines_function("tel_dubbele")
-    assert getFunction("tel_dubbele")({"a": 1, "b": 2, "c": 1}) == 1
-    assert getFunction("tel_dubbele")({"a": 1, "b": 2, "c": 3}) == 0
-    assert getFunction("tel_dubbele")({}) == 0
+    assert_doctest('tel_dubbele', {"a": 1, "b": 2, "c": 1}, 1)
+    assert_doctest('tel_dubbele', {"a": 1, "b": 2, "c": 3}, 0)
+    assert_doctest('tel_dubbele', {}, 0)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def dict_intersect():
     """dict_intersect werkt correct"""
-    assert defines_function("dict_intersect")
-    assert getFunction("dict_intersect")({"a": 1, "b": 2}, {"a": 1, "c": 3}) == {"a": 1}
-    assert getFunction("dict_intersect")({"x": 42}, {"y": 42}) == {}
-    assert getFunction("dict_intersect")({}, {}) == {}
+    assert_doctest('dict_intersect', ({"a": 1, "b": 2}, {"a": 1, "c": 3}), {"a": 1})
+    assert_doctest('dict_intersect', ({"x": 42}, {"y": 42}), {})
+    assert_doctest('dict_intersect', ({}, {}), {})
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()

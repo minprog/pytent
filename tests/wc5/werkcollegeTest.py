@@ -36,88 +36,80 @@ def same_first_last():
 @t.test()
 def is_longer():
     """is_longer werkt correct"""
-    assert defines_function("is_longer")
-    assert getFunction("is_longer")([1, 2, 3], [1, 2]) == True
-    assert getFunction("is_longer")([], [1]) == False
-    assert getFunction("is_longer")([], []) == False
+    assert_doctest('is_longer', ([1, 2, 3], [1, 2]), True)
+    assert_doctest('is_longer', ([], [1]), False)
+    assert_doctest('is_longer', ([], []), False)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def is_palindromish():
     """is_palindromish werkt correct"""
-    assert defines_function("is_palindromish")
-    assert getFunction("is_palindromish")([1, 2, 3, 2, 1]) == True
-    assert getFunction("is_palindromish")([1, 2, 3]) == False
-    assert getFunction("is_palindromish")([]) == True
+    assert_doctest('is_palindromish', [1, 2, 3, 2, 1], True)
+    assert_doctest('is_palindromish', [1, 2, 3], False)
+    assert_doctest('is_palindromish', [], True)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def is_palindromish_eff():
     """is_palindromish_eff werkt correct"""
-    assert defines_function("is_palindromish_eff")
-    assert getFunction("is_palindromish_eff")([1, 2, 3, 2, 1]) == True
-    assert getFunction("is_palindromish_eff")([1, 2, 3]) == False
-    assert getFunction("is_palindromish_eff")([]) == True
+    assert_doctest('is_palindromish_eff', [1, 2, 3, 2, 1], True)
+    assert_doctest('is_palindromish_eff', [1, 2, 3], False)
+    assert_doctest('is_palindromish_eff', [], True)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def filter_even():
     """filter_even werkt correct"""
     assert defines_function("filter_even")
-    assert getFunction("filter_even")([1, 2, 3, 4]) == [2, 4]
-    assert getFunction("filter_even")([1, 3, 5]) == []
-    assert getFunction("filter_even")([]) == []
+    assert_doctest('filter_even', [1, 2, 3, 4], [2, 4])
+    assert_doctest('filter_even', [1, 3, 5], [])
+    assert_doctest('filter_even', [], [])
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def all_even():
     """all_even werkt correct"""
-    assert defines_function("all_even")
-    assert getFunction("all_even")([2, 4, 6]) == True
-    assert getFunction("all_even")([2, 4, 5]) == False
-    assert getFunction("all_even")([]) == True
+    assert_doctest('all_even', [2, 4, 6], True)
+    assert_doctest('all_even', [2, 4, 5], False)
+    assert_doctest('all_even', [], True)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def max_element():
     """max_element werkt correct"""
-    assert defines_function("max_element")
-    assert getFunction("max_element")([1, 2, 3]) == 3
-    assert getFunction("max_element")([-1, -2, -3]) == -1
-    assert getFunction("max_element")([42]) == 42
+    assert_doctest('max_element', [1, 2, 3], 3)
+    assert_doctest('max_element', [-1, -2, -3], -1)
+    assert_doctest('max_element', [42], 42)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def element_exists():
     """element_exists werkt correct"""
-    assert defines_function("element_exists")
-    assert getFunction("element_exists")([1, 2, 3], 2) == True
-    assert getFunction("element_exists")([1, 2, 3], 4) == False
-    assert getFunction("element_exists")([], 1) == False
+    assert_doctest('element_exists', ([1, 2, 3], 2), True)
+    assert_doctest('element_exists', ([1, 2, 3], 4), False)
+    assert_doctest('element_exists', ([], 1), False)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def count_occurrences():
     """count_occurrences werkt correct"""
-    assert defines_function("count_occurrences")
-    assert getFunction("count_occurrences")([1, 2, 2, 3], 2) == 2
-    assert getFunction("count_occurrences")([1, 2, 3], 4) == 0
-    assert getFunction("count_occurrences")([], 1) == 0
+    assert_doctest('count_occurrences', ([1, 2, 2, 3], 2), 2)
+    assert_doctest('count_occurrences', ([1, 2, 3], 4), 0)
+    assert_doctest('count_occurrences', ([], 1), 0)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def remove_duplicates():
     """remove_duplicates werkt correct"""
-    assert defines_function("remove_duplicates")
-    assert getFunction("remove_duplicates")([1, 2, 2, 3]) == [1, 2, 3]
-    assert getFunction("remove_duplicates")([1, 1, 1]) == [1]
-    assert getFunction("remove_duplicates")([]) == []
+    assert_doctest('remove_duplicates', [1, 2, 2, 3], [1, 2, 3])
+    assert_doctest('remove_duplicates', [1, 1, 1], [1])
+    assert_doctest('remove_duplicates', [], [])
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def merge_sorted_lists():
     """merge_sorted_lists werkt correct"""
     assert defines_function("merge_sorted_lists")
-    assert getFunction("merge_sorted_lists")([1, 3, 5], [2, 4, 6]) == [1, 2, 3, 4, 5, 6]
-    assert getFunction("merge_sorted_lists")([], [2, 4]) == [2, 4]
-    assert getFunction("merge_sorted_lists")([], []) == []
+    assert_doctest('merge_sorted_lists', ([1, 3, 5], [2, 4, 6]), [1, 2, 3, 4, 5, 6])
+    assert_doctest('merge_sorted_lists', ([], [2, 4]), [2, 4])
+    assert_doctest('merge_sorted_lists', ([], []), [])
