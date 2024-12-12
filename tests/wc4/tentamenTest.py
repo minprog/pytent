@@ -75,8 +75,8 @@ def encrypt():
 @t.test()
 def remove_nth_word():
     """remove_nth_word werkt correct"""
-    assert_doctest('remove_nth_word', ("abc def geh", 3), "abc def ")
-    assert_doctest('remove_nth_word', ("one two three four", 2), "one  three four")
+    assert_doctest('remove_nth_word', ("abc def geh", 3), "abc def ", hint="'abc def' zonder extra spatie mag ook, docent moet handmatig goedkeuren")
+    assert_doctest('remove_nth_word', ("one two three four", 2), "one  three four", hint="'one three four' zonder extra spatie mag ook, docent moet handmatig goedkeuren")
     assert_doctest('remove_nth_word', ("single", 1), "")
 
 @t.passed(no_syntax_error, hide=False)
