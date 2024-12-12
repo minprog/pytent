@@ -54,9 +54,9 @@ def print_collatz():
     assert defines_function("print_collatz")
     f = getFunction("print_collatz")
     f(8)
-    assert f.printOutput.strip() == "8\n4\n2\n1".strip()
+    assert f.printOutput.strip() == "8\n4\n2\n1".strip(), "print_collatz(8) moet 8, 4, 2, 1 printen op losse regels"
     f(12)
-    assert f.printOutput.strip() == "12\n6\n3\n10\n5\n16\n8\n4\n2\n1".strip()
+    assert f.printOutput.strip() == "12\n6\n3\n10\n5\n16\n8\n4\n2\n1".strip(), "print_collatz(12) moet 12, ..., 8, 4, 2, 1 printen op losse regels"
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
@@ -90,23 +90,23 @@ def print_primes_until():
     assert defines_function("print_primes_until")
     f = getFunction("print_primes_until")
     f(2)
-    assert f.printOutput.strip() == "2".strip(), "print_primes_until(2)"
+    assert f.printOutput.strip() == "2".strip(), "print_primes_until(2) moet 2 printen"
     f(3)
-    assert f.printOutput.strip() == "2\n3".strip(), "print_primes_until(3)"
+    assert f.printOutput.strip() == "2\n3".strip(), "print_primes_until(3) moet 2 en 3 printen op losse regels"
     f(4)
-    assert f.printOutput.strip() == "2\n3".strip(), "print_primes_until(4)"
+    assert f.printOutput.strip() == "2\n3".strip(), "print_primes_until(4) moet 2 en 3 printen"
     f(5)
-    assert f.printOutput.strip() == "2\n3\n5".strip(), "print_primes_until(5)"
+    assert f.printOutput.strip() == "2\n3\n5".strip(), "print_primes_until(5) moet 2, 3 en 5 printen"
     f(6)
-    assert f.printOutput.strip() == "2\n3\n5".strip(), "print_primes_until(6)"
+    assert f.printOutput.strip() == "2\n3\n5".strip(), "print_primes_until(6) moet 2, 3 en 5 printen"
     f(7)
-    assert f.printOutput.strip() == "2\n3\n5\n7".strip(), "print_primes_until(7)"
+    assert f.printOutput.strip() == "2\n3\n5\n7".strip(), "print_primes_until(7) moet 2, 3, 5 en 7 printen"
     f(8)
-    assert f.printOutput.strip() == "2\n3\n5\n7".strip(), "print_primes_until(8)"
+    assert f.printOutput.strip() == "2\n3\n5\n7".strip(), "print_primes_until(8) moet 2, 3, 5 en 7 printen"
     f(9)
-    assert f.printOutput.strip() == "2\n3\n5\n7".strip(), "print_primes_until(9)"
+    assert f.printOutput.strip() == "2\n3\n5\n7".strip(), "print_primes_until(9) moet 2, 3, 5 en 7 printen"
     f(10)
-    assert f.printOutput.strip() == "2\n3\n5\n7".strip(), "print_primes_until(10)"
+    assert f.printOutput.strip() == "2\n3\n5\n7".strip(), "print_primes_until(10) moet 2, 3, 5 en 7 printen"
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
@@ -126,7 +126,7 @@ def print_n_primes():
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def print_nth_prime():
-    """print_nth_prime werkt correct"""
+    """print_nth_prime werkt correct (geen return maar print!)"""
     assert defines_function("print_nth_prime")
     f = getFunction("print_nth_prime")
     f(1)
