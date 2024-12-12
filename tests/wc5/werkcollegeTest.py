@@ -28,10 +28,9 @@ def check_forbidden():
 @t.test()
 def same_first_last():
     """same_first_last werkt correct"""
-    assert defines_function("same_first_last")
-    assert getFunction("same_first_last")([1, 2, 3, 1]) == True
-    assert getFunction("same_first_last")([1, 2, 3]) == False
-    assert getFunction("same_first_last")([]) == False, "same_first_last([]) moet ook een [] teruggeven"
+    assert_doctest('same_first_last', [1, 2, 3, 1], True)
+    assert_doctest('same_first_last', [1, 2, 3], False)
+    assert_doctest('same_first_last', [], False)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
