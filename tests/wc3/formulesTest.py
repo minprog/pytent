@@ -27,82 +27,73 @@ def check_forbidden():
 @t.test()
 def count_occurrences():
     """count_occurrences werkt correct"""
-    assert defines_function("count_occurrences")
-    assert getFunction("count_occurrences")("hello", "l") == 2
-    assert getFunction("count_occurrences")("hello", "e") == 1
-    assert getFunction("count_occurrences")("hello", "x") == 0
+    assert_doctest('count_occurrences', ("hello", "l"), 2)
+    assert_doctest('count_occurrences', ("hello", "e"), 1)
+    assert_doctest('count_occurrences', ("hello", "x"), 0)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def has_O():
     """has_O werkt correct"""
-    assert defines_function("has_O")
-    assert getFunction("has_O")("HELLO") == True
-    assert getFunction("has_O")("hello") == False
-    assert getFunction("has_O")("Ooops") == True
+    assert_doctest('has_O', "HELLO", True)
+    assert_doctest('has_O', "hello", False)
+    assert_doctest('has_O', "Ooops", True)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def find():
     """find werkt correct"""
-    assert defines_function("find")
-    assert getFunction("find")("hello", "e") == 1
-    assert getFunction("find")("hello", "x") == -1
-    assert getFunction("find")("hello", "l") == 2
+    assert_doctest('find', ("hello", "e"), 1)
+    assert_doctest('find', ("hello", "x"), -1)
+    assert_doctest('find', ("hello", "l"), 2)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def has_up_and_down():
     """has_up_and_down werkt correct"""
-    assert defines_function("has_up_and_down")
-    assert getFunction("has_up_and_down")("Hello") == True
-    assert getFunction("has_up_and_down")("HELLO") == False
-    assert getFunction("has_up_and_down")("hello") == False
+    assert_doctest('has_up_and_down', "Hello", True)
+    assert_doctest('has_up_and_down', "HELLO", False)
+    assert_doctest('has_up_and_down', "hello", False)
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def multiply():
     """multiply werkt correct"""
-    assert defines_function("multiply")
-    assert getFunction("multiply")("abc", 3) == "abcabcabc"
-    assert getFunction("multiply")("x", 0) == ""
-    assert getFunction("multiply")("", 5) == ""
+    assert_doctest('multiply', ("abc", 3), "abcabcabc")
+    assert_doctest('multiply', ("x", 0), "")
+    assert_doctest('multiply', ("", 5), "")
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def reverse_string():
     """reverse_string werkt correct"""
-    assert defines_function("reverse_string")
-    assert getFunction("reverse_string")("abcdef") == "fedcba"
-    assert getFunction("reverse_string")("") == ""
-    assert getFunction("reverse_string")("a") == "a"
+    assert_doctest('reverse_string', ("abcdef"), "fedcba")
+    assert_doctest('reverse_string', (""), "")
+    assert_doctest('reverse_string', ("a"), "a")
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def leetspeak():
     """leetspeak werkt correct"""
-    assert defines_function("leetspeak")
-    assert getFunction("leetspeak")("aleot") == "41307"
-    assert getFunction("leetspeak")("ALEOT") == "41307"
-    assert getFunction("leetspeak")("hello") == "h3110"
+    assert_doctest('leetspeak', "aleot", "41307")
+    assert_doctest('leetspeak', "ALEOT", "41307")
+    assert_doctest('leetspeak', "hello", "h3110")
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def replace_char():
     """replace_char werkt correct"""
-    assert defines_function("replace_char")
-    assert getFunction("replace_char")("hello", "l", "x") == "hexxo"
-    assert getFunction("replace_char")("hello", "e", "a") == "hallo"
-    assert getFunction("replace_char")("hello", "z", "x") == "hello"
+    assert_doctest('replace_char', ("hello", "l", "x"), "hexxo")
+    assert_doctest('replace_char', ("hello", "e", "a"), "hallo")
+    assert_doctest('replace_char', ("hello", "z", "x"), "hello")
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
 def to_lower():
     """to_lower werkt correct"""
-    assert defines_function("to_lower")
-    assert getFunction("to_lower")("HeLLo") == "hello"
-    assert getFunction("to_lower")("HELLO") == "hello"
-    assert getFunction("to_lower")("hello") == "hello"
+    assert_doctest('to_lower', "HeLLo", "hello")
+    assert_doctest('to_lower', "HELLO", "hello")
+    assert_doctest('to_lower', "hello", "hello")
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
