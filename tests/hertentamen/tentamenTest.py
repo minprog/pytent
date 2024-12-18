@@ -29,7 +29,7 @@ def vowel_balance():
 @t.test()
 def validate_house_address():
     """validate_house_address werkt correct"""
-    potential_names = ['validate_house_address', 'validate_house_adress', 'validate_house_adres']
+    potential_names = ['validate_house_address', 'validate_house_adress', 'validate_house_adres', 'valid_house_address']
     selected_function = None
     for name in potential_names:
         if defines_function_no_assert(name):
@@ -82,7 +82,7 @@ def extract_even_number():
 @t.test()
 def average_sentence_length():
     """average_sentence_length werkt correct"""
-    potential_names = ['avarage_sentence_length', 'average_sentence_length', 'avarage_sentence_legth', 'average_scentence_length', 'avarge_sentence_length']
+    potential_names = ['avarage_sentence_length', 'average_sentence_length', 'avarage_sentence_legth', 'average_scentence_length', 'avarge_sentence_length', 'average_sentence_lenght']
     selected_function = None
     for name in potential_names:
         if defines_function_no_assert(name):
