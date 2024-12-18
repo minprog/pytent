@@ -50,13 +50,19 @@ def validate_house_address():
 @t.test()
 def humanize_string():
     """humanize_string werkt correct"""
-    assert defines_function("humanize_string")
-    src = extract_function_by_name("humanize_string")
+    potential_names = ['humanize_string', 'hummanize_string']
+    selected_function = None
+    for name in potential_names:
+        if defines_function_no_assert(name):
+            selected_function = name
+            break
+    if selected_function == None: raise AssertionError(f"{' of '.join(potential_names)} niet gevonden")
+    src = extract_function_by_name(selected_function)
     assert no_string_methods_or_slicing(src)
-    assert_doctest('humanize_string', "employee_salary", "Employee Salary")
-    assert_doctest('humanize_string', "python_programming_language", "Python Programming Language")
-    assert_doctest('humanize_string', "test", "Test")
-    assert_doctest('humanize_string', "a_b_c_d", "A B C D")
+    assert_doctest(selected_function, "employee_salary", "Employee Salary")
+    assert_doctest(selected_function, "python_programming_language", "Python Programming Language")
+    assert_doctest(selected_function, "test", "Test")
+    assert_doctest(selected_function, "a_b_c_d", "A B C D")
     # assert_doctest('humanize_string', "", "")
 
 @t.passed(no_syntax_error, hide=False)
