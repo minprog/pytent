@@ -29,7 +29,7 @@ def vowel_balance():
 @t.test()
 def validate_house_address():
     """validate_house_address werkt correct"""
-    potential_names = ['validate_house_address', 'validate_house_adress']
+    potential_names = ['validate_house_address', 'validate_house_adress', 'validate_house_adres']
     selected_function = None
     for name in potential_names:
         if defines_function_no_assert(name):
@@ -63,14 +63,20 @@ def humanize_string():
 @t.test()
 def extract_even_number():
     """extract_even_number werkt correct"""
-    assert defines_function("extract_even_number")
-    src = extract_function_by_name("extract_even_number")
+    potential_names = ['extract_even_number', 'extract_even_numbers']
+    selected_function = None
+    for name in potential_names:
+        if defines_function_no_assert(name):
+            selected_function = name
+            break
+    if selected_function == None: raise AssertionError(f"{' of '.join(potential_names)} niet gevonden")
+    src = extract_function_by_name(selected_function)
     assert no_string_methods_or_slicing(src)
-    assert_doctest('extract_even_number', "abc1234def", 1234)
-    assert_doctest('extract_even_number', "5678xyz", 5678)
-    assert_doctest('extract_even_number', "ja123", 0)  # Geen even getallen
-    assert_doctest('extract_even_number', "123 246", 246)  # Eerste even getal
-    assert_doctest('extract_even_number', "222 246", 222)  # Eerste even getal
+    assert_doctest(selected_function, "abc1234def", 1234)
+    assert_doctest(selected_function, "5678xyz", 5678)
+    assert_doctest(selected_function, "ja123", 0)  # Geen even getallen
+    assert_doctest(selected_function, "123 246", 246)  # Eerste even getal
+    assert_doctest(selected_function, "222 246", 222)  # Eerste even getal
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
