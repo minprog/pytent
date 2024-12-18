@@ -82,7 +82,7 @@ def extract_even_number():
 @t.test()
 def average_sentence_length():
     """average_sentence_length werkt correct"""
-    potential_names = ['avarage_sentence_length', 'average_sentence_length', 'avarage_sentence_legth', 'average_scentence_length']
+    potential_names = ['avarage_sentence_length', 'average_sentence_length', 'avarage_sentence_legth', 'average_scentence_length', 'avarge_sentence_length']
     selected_function = None
     for name in potential_names:
         if defines_function_no_assert(name):
