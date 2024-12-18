@@ -75,6 +75,10 @@ def defines_function(name: str) -> bool:
         raise AssertionError(f"`{name}` is niet aanwezig")
     return check
 
+def defines_function_no_assert(name: str) -> bool:
+    check = name in static.getFunctionDefinitions()
+    return check
+
 def not_in_code(construct: type):
     check = construct not in static.AbstractSyntaxTree()
     name = str(construct).split(".")[1].split("'")[0].lower()
