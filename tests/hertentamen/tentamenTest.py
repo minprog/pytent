@@ -56,7 +56,7 @@ def validate_house_address():
 @t.test()
 def humanize_string():
     """humanize_string werkt correct"""
-    potential_names = ['humanize_string', 'hummanize_string']
+    potential_names = ['humanize_string', 'hummanize_string', 'humanize_str']
     selected_function = None
     for name in potential_names:
         if defines_function_no_assert(name):
