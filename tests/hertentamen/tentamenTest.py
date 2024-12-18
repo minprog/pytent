@@ -15,15 +15,21 @@ from _static_analysis import *
 @t.test()
 def vowel_balance():
     """vowel_balance werkt correct"""
-    assert defines_function("vowel_balance")
-    src = extract_function_by_name("vowel_balance")
+    potential_names = ['vowel_balance', 'vowel_balace']
+    selected_function = None
+    for name in potential_names:
+        if defines_function_no_assert(name):
+            selected_function = name
+            break
+    if selected_function == None: raise AssertionError(f"{' of '.join(potential_names)} niet gevonden")
+    src = extract_function_by_name(selected_function)
     assert no_string_methods_or_slicing(src)
     assert has_no_call_to(src, 'sorted'), "Bevat geen aanroep naar sorted()"
-    assert_doctest('vowel_balance', "aeiou", True)  # Alleen klinkers
-    assert_doctest('vowel_balance', "bcdfg", False)  # Alleen medeklinkers
-    assert_doctest('vowel_balance', "aeioubcdfg", False)  # Gelijke klinkers en medeklinkers
-    assert_doctest('vowel_balance', "Thiiiiis iiiis a teeeeest sentence.", True)  # Meer klinkers
-    assert_doctest('vowel_balance', "Ths s n mst knspnt.", False)  # Geen klinkers
+    assert_doctest(selected_function, "aeiou", True)  # Alleen klinkers
+    assert_doctest(selected_function, "bcdfg", False)  # Alleen medeklinkers
+    assert_doctest(selected_function, "aeioubcdfg", False)  # Gelijke klinkers en medeklinkers
+    assert_doctest(selected_function, "Thiiiiis iiiis a teeeeest sentence.", True)  # Meer klinkers
+    assert_doctest(selected_function, "Ths s n mst knspnt.", False)  # Geen klinkers
 
 @t.passed(no_syntax_error, hide=False)
 @t.test()
